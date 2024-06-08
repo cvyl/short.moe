@@ -50,14 +50,14 @@ export default function Home() {
           placeholder="Long URL"
           value={longURL}
           onChange={(e) => setLongURL(e.target.value)}
-          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded"
+          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded text-black"
         />
         <input
           type="text"
           placeholder="Alias (optional)"
           value={alias}
           onChange={(e) => setAlias(e.target.value)}
-          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded"
+          className="w-full px-3 py-2 mb-4 border border-gray-300 rounded text-black"
         />
         <button
           onClick={shorten}
