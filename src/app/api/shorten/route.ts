@@ -76,7 +76,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
+// Delete short URL functionality
 export async function DELETE(req: NextRequest) {
   const user = await currentUser();
   if (!user) {
