@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRIMARY_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id         String        @id @default(cuid())
+  clerkId    String        @unique
+  email      String        @unique
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  shortURLs  shortURL[]
+  ipAddress  String?
+}
+
+model AnonymousUser {
+  id         String        @id @default(cuid())
+  ipAddress  String
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  shortURLs  shortURL[]
+}
+
+model shortURL {
+  id         Int           @id @default(autoincrement()) @map("_id")
+  longURL    String
+  shortURL   String        @unique
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  expiresAt  DateTime? 
+  userId     String?
+  User       User?         @relation(fields: [userId], references: [id], map: "shortURLs_userId_fkey_constraint")
+  AnonymousUser AnonymousUser? @relation(fields: [userId], references: [id])
+
+  @@map("shortURLs")
+}
