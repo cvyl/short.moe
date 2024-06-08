@@ -24,24 +24,15 @@ model User {
   ipAddress  String?
 }
 
-model AnonymousUser {
-  id         String        @id @default(cuid())
-  ipAddress  String
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  shortURLs  shortURL[]
-}
 
 model shortURL {
   id         Int           @id @default(autoincrement()) @map("_id")
   longURL    String
-  shortURL   String        @unique
+  alias      String        @unique
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
-  expiresAt  DateTime? 
-  userId     String?
-  User       User?         @relation(fields: [userId], references: [id], map: "shortURLs_userId_fkey_constraint")
-  AnonymousUser AnonymousUser? @relation(fields: [userId], references: [id])
-
+  userId     String
+  User      User     @relation(fields: [userId], references: [id])
+  
   @@map("shortURLs")
 }

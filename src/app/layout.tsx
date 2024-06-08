@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { dark } from "@clerk/themes";
 import "./globals.css";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +18,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
+      <html lang="en">
+        <body className={inter.className}>
+          <header>
+            <nav className="bg-slate-900 text-white">
+              <div className="container mx-auto py-4">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <a href="/" className="text-lg font-bold">
+                      Create Next App
+                    </a>
+                  </div>
+                  <div>
+                    <SignedIn>
+                      <UserButton />
+                    </SignedIn>
+                    <SignedOut>
+                      <SignInButton />
+                    </SignedOut>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
+          <main className="bg-slate-700">
+            {children}
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
