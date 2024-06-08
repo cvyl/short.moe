@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:vercel": "vercel --prod",
+    "deploy:vercel:preview": "vercel",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name 'init'",
+    "prisma:studio": "prisma studio",
+    "prisma:reset": "prisma migrate reset --force",
+    "prisma:push": "prisma db push"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.4",
