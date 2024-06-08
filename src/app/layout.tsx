@@ -39,7 +39,9 @@ export default function RootLayout({
                       <UserButton />
                     </SignedIn>
                     <SignedOut>
-                      <SignInButton />
+                      <SignInButton 
+                      mode='modal'
+                      />
                     </SignedOut>
                   </div>
                 </div>
