@@ -1,6 +1,7 @@
 'use client';
 import './globals.css';
 import React from 'react';
+import { UrlQRCode } from '@/components/qrcode';
 
 //simple welcome page with tailwindcss and a button to create a short URL and show the result in the a seperate text under the button
 //also make a box to show the error if there is any
@@ -58,14 +59,7 @@ export default function Home() {
         >
           Shorten
         </button>
-        {shortURL && (
-          <div className="mb-4">
-            <a href={shortURL} target="_blank" rel="noreferrer" className="text-blue-500">
-              {shortURL}
-            </a>
-          </div>
-        )}
-        {error && <div className="text-red-500 mb-4">{error}</div>}
+        
       </div>
     </div>
   );
