@@ -1,16 +1,20 @@
 'use client';
 import './globals.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { UrlQRCode } from '@/components/qrcode';
 
-//simple welcome page with tailwindcss and a button to create a short URL and show the result in the a seperate text under the button
-//also make a box to show the error if there is any
-//and make it so the user can decide the alias of the short URL
 export default function Home() {
   const [longURL, setLongURL] = React.useState('');
   const [alias, setAlias] = React.useState('');
   const [shortURL, setShortURL] = React.useState('');
   const [error, setError] = React.useState('');
+
+  useEffect(() => {
+    const storedShortURL = localStorage.getItem('shortURL');
+    if (storedShortURL) {
+      setShortURL(storedShortURL);
+    }
+  }, []);
 
   async function shorten() {
     const response = await fetch('/api/shorten', {
@@ -24,14 +28,16 @@ export default function Home() {
       }),
     });
 
+    const result = await response.json();
+
     if (response.ok) {
-      const result = await response.json();
       setShortURL(result.shortURL);
+      localStorage.setItem('shortURL', result.shortURL);
       setError('');
     } else {
-      const result = await response.json();
       setShortURL('');
       setError(result.error);
+      localStorage.removeItem('shortURL');
     }
   }
 
@@ -59,7 +65,6 @@ export default function Home() {
         >
           Shorten
         </button>
-        
       </div>
     </div>
   );
