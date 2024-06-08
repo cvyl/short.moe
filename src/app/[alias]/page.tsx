@@ -14,6 +14,5 @@ export default async function RedirectPage({
 
   if (!shortURL) { redirect('/'); }
 
-  console.log(`Redirecting to: ${shortURL.longURL}`); // Debugging line
   redirect(shortURL.longURL);
 }
