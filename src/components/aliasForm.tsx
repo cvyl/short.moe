@@ -1,4 +1,5 @@
 'use client';
+import { BASE_URL } from '@/config/site';
 import '../app/globals.css';
 import React from 'react';
 
@@ -23,13 +24,11 @@ export default function AliasForm() {
         const result = await response.json();
 
         if (response.ok) {
-            setShortURL(result.shortURL);
-            localStorage.setItem('shortURL', result.shortURL);
+            setShortURL(result.alias);
             setError('');
         } else {
             setShortURL('');
             setError(result.error);
-            localStorage.removeItem('shortURL');
         }
     }
 
@@ -59,18 +58,8 @@ export default function AliasForm() {
                 >
                     Shorten
                 </button>
-                {shortURL && (
-                    <div className='mt-4 text-center text-gray-800 dark:text-gray-200'>
-                        <p className='font-medium'>Short URL:</p>
-                        <p className='break-words'>{shortURL}</p>
-                    </div>
-                )}
-                {error && (
-                    <div className='mt-4 text-center text-red-600 dark:text-red-400'>
-                        <p className='font-medium'>Error:</p>
-                        <p className='break-words'>{error}</p>
-                    </div>
-                )}
+                {error && <p className='text-center mt-4 text-pink-600 break-all'>{error}</p>}
+                {shortURL && <p className='text-center mt-4 text-pink-600 break-all'>{BASE_URL}/{shortURL}</p>}
             </div>
         </div>
     );

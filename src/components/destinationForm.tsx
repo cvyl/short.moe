@@ -1,21 +1,43 @@
 'use client';
 import '../app/globals.css';
 import React from 'react';
+import anonUrl from '@/schemas/urlNonAlias';
 
 export default function GetDestination() {
     const [alias, setAlias] = React.useState('');
     const [longURL, setLongURL] = React.useState('');
+    const [error, setError] = React.useState('');
+
+    async function splitURL(url: string) {
+        try {
+            anonUrl.parse({ url });
+            const split = url.split('/');
+            return split[split.length - 1];
+        } catch (error) {
+            setError('Invalid URL');
+            return '';
+        }
+
+        
+    }
 
     async function getDestination(query: string) {
-        const response = await fetch('/api/metadata?q=' + query, {
+        const querySplit = await splitURL(query);
+        if (querySplit === '') {
+            return;
+        }
+        const response = await fetch('/api/metadata?q=' + querySplit, {
             method: 'GET',
         });
         
-        if (!response.ok) {
-            console.error(response);
-        }
         const result = await response.json();
-        setLongURL(result.longURL);
+        if (response.ok) {
+            setLongURL(result);
+            setError('');
+        } else {
+            setLongURL('');
+            setError(result.error);
+        }
     }
 
     return (
@@ -37,12 +59,8 @@ export default function GetDestination() {
                 >
                     Get Destination
                 </button>
-                {longURL && (
-                    <div className='mt-4 text-center text-gray-800 dark:text-gray-200'>
-                        <p className='font-medium'>Destination URL:</p>
-                        <p className='break-words'>{longURL}</p>
-                    </div>
-                )}
+                {error && <p className='text-center mt-4 text-pink-600 break-all'>{error}</p>}
+                {longURL && <p className='text-center mt-4 text-pink-600 break-all'>{longURL}</p>}
             </div>
         </div>
     );

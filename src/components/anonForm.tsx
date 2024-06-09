@@ -1,9 +1,12 @@
 'use client';
+import { BASE_URL } from '@/config/site';
 import '../app/globals.css';
 import React from 'react';
 
 export default function AnonForm() {
     const [longURL, setLongURL] = React.useState('');
+    const [shortURL, setShortURL] = React.useState('');
+    const [error, setError] = React.useState('');
 
     async function postAnon() {
         const response = await fetch('/api/random', {
@@ -15,8 +18,14 @@ export default function AnonForm() {
                 longURL,
             }),
         });
-        if (!response.ok) {
-            console.error(response);
+        const result = await response.json();
+
+        if (response.ok) {
+            setShortURL(result.alias);
+            setError('');
+        } else {
+            setShortURL('');
+            setError(result.error);
         }
     }
 
@@ -39,7 +48,9 @@ export default function AnonForm() {
                 >
                     Shorten
                 </button>
-            </div>
+                {error && <p className='text-center mt-4 text-pink-600 break-all'>{error}</p>}
+                {shortURL && <p className='text-center mt-4 text-pink-600 break-all'>{BASE_URL}/{shortURL}</p>}
+            </div> 
         </div>
     );
 }
