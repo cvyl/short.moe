@@ -15,8 +15,8 @@ body {
 main {
   background: linear-gradient(
     135deg,
-    rgba(255, 182, 193, 0.5), /* semi-transparent light pink */
-    rgba(255, 240, 245, 0.8)  /* semi-transparent lavender blush */
+    rgba(255, 182, 193, 0.5),
+    rgba(255, 240, 245, 0.8)
   );
   padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@ main {
 }
 
 footer {
-    background: rgba(255, 182, 193, 0.5); /* semi-transparent light pink */
+    background: rgba(255, 182, 193, 0.5);
     padding: 1rem;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
   }
