@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import prisma from '@/lib/prisma';
 
-export async function counter(alias: string) {
+ async function counter(alias: string) {
   const shortURL = await prisma.shortURL.findFirst({
     where: { alias },
   });
