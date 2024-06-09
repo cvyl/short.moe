@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://short.moe';
+export const BASE_URL = 'https://short.moe';
 export const SITE_NAME = 'short.moe';
 export const SITE_DESCRIPTION = 'A simple and free URL shortener.';
 export const SITE_TITLE = 'short.moe - A free URL Shortener';
