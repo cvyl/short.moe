@@ -10,25 +10,11 @@ import sakura from '../../public/sakura.svg'; // Import the SVG logo
 import Link from 'next/link'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
+import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'short.moe - URL Shortener',
-  description: 'A simple URL shortener.',
-  openGraph: {
-    title: 'short.moe - URL Shortener',
-    description: 'A simple URL shortener.',
-    type: 'website',
-    url: 'https://short.moe',
-    images: 'https://short.moe/sakura.svg',
-  },
-  authors: [
-    {
-      name: 'Mikka (@cvyl)',
-    },
-  ],
-};
+export const metadata: Metadata = siteConfig;
 
 export default function RootLayout({
   children,
