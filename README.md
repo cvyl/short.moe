@@ -4,7 +4,7 @@ Short.moe is a free URL shortener service that allows you to easily shorten long
 
 ## How to Use
 
-1. **Shorten a URL**: 
+1. **Shorten a URL**:
    - Visit [Short.moe](https://short.moe) in your web browser.
    - Paste your long URL into the provided input field.
    - Click the "Shorten" button.
