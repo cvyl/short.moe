@@ -47,7 +47,7 @@ export default function RootLayout({
                 <div className='flex items-center space-x-4'>
                   <Image src={sakura} alt='Sakura Logo' width={40} height={40} />
                   <a href='/' className='text-lg font-bold'>
-                    Create Next App
+                    Short.moe
                   </a>
                 </div>
                 <div>
