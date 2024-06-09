@@ -10,7 +10,7 @@ import sakura from '../../public/sakura.svg'; // Import the SVG logo
 import Link from 'next/link'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
-import { siteConfig } from '@/config/site';
+import { SITE_COLOR, siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +28,11 @@ export default function RootLayout({
       }}
     >
       <html lang='en'>
+        <head>
+          <meta name="theme-color" content={SITE_COLOR}/>
+          <meta name="msapplication-TileColor" content={SITE_COLOR}/>
+          <meta name="apple-mobile-web-app-status-bar-style" content={SITE_COLOR}/>
+        </head>
         <body className={inter.className}>
           <header>
             <nav className='bg-black bg-opacity-50 text-white py-2'>

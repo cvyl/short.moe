@@ -4,9 +4,11 @@ export const SITE_DESCRIPTION = 'A simple and free URL shortener.';
 export const SITE_TITLE = 'short.moe - A free URL Shortener';
 export const SITE_IMAGE = 'https://repository-images.githubusercontent.com/812269186/2a8e675e-0e9c-40e6-ad57-8cc9f82e4053';
 export const SITE_AUTHOR = 'Mikka (@cvyl)';
+export const SITE_COLOR = '#ee9ca7';
 
 
 export const siteConfig = {
+    
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     openGraph: {
