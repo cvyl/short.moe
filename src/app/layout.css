@@ -1,0 +1,30 @@
+@import './globals.css';
+
+body {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 193, 0.5), /* semi-transparent light pink */
+    rgba(255, 240, 245, 0.8)  /* semi-transparent lavender blush */
+  );
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+footer {
+    background: rgba(255, 182, 193, 0.5); /* semi-transparent light pink */
+    padding: 1rem;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  }
