@@ -84,17 +84,20 @@ export async function DELETE(req: NextRequest) {
   }
 
   try {
-    const { id } = await req.json();
+    const { alias } = await req.json();
 
     const short = await prisma.shortURL.findFirst({
-      where: { id, userId: user.id },
+      where: {
+        alias,
+        userId: user.id
+       },
     });
 
     if (!short) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });
     }
 
-    await prisma.shortURL.delete({ where: { id } });
+    await prisma.shortURL.delete({ where: { alias } });
 
     return NextResponse.json(short, { status: 200 });
   } catch (error) {
