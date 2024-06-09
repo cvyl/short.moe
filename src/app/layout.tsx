@@ -8,6 +8,8 @@ import React from 'react';
 import Image from 'next/image';
 import sakura from '../../public/sakura.svg'; // Import the SVG logo
 import Link from 'next/link'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -65,6 +67,8 @@ export default function RootLayout({
           </header>
           <main>
             {children}
+            <Analytics />
+            <SpeedInsights />
           </main>
           <footer className='flex justify-between'>
             <div className='container mx-auto py-1 text-center text-fuchsia-100'>
