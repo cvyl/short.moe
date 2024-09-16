@@ -23,7 +23,7 @@
     "@vercel/speed-insights": "^1.0.12",
     "file-saver": "^2.0.5",
     "nanoid": "^5.0.7",
-    "next": "14.2.6",
+    "next": "14.2.11",
     "qrcode.react": "^4.0.1",
     "react": "^18",
     "react-copy-to-clipboard": "^5.1.0",
